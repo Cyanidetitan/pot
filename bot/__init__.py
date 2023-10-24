@@ -10,8 +10,8 @@ from pyrogram import Client
 
 class Config(object):
   BOT_TOKEN = str("")
-  API_ID = int()
-  API_HASH = str("")
+  API_ID = 8858279
+  API_HASH = str("ef28c3f458143cbcb4271a98a2e9d596")
   DOWNLOAD_LOCATION = str("bot/downloads/")
   LOG_CHANNEL = "Ongoing_Animes_480p"
   UPDATES_CHANNEL = "FIERCENETWORK"
