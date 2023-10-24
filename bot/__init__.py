@@ -13,11 +13,11 @@ class Config(object):
   API_ID = 8858279
   API_HASH = str("ef28c3f458143cbcb4271a98a2e9d596")
   DOWNLOAD_LOCATION = str("bot/downloads/")
-  LOG_CHANNEL = "Ongoing_Animes_480p"
-  UPDATES_CHANNEL = "FIERCENETWORK"
+  LOG_CHANNEL = "animejinx_ongoing"
+  UPDATES_CHANNEL = "animejinx_ongoing"
   DOWNLOAD_DIR = "downloads/"
-  AUTH_USERS = [5703071595]
-  BOT_USERNAME = "LOL_BOT"
+  AUTH_USERS = [5894098166]
+  BOT_USERNAME = "animesallbot"
   SESSION_STRING = ""
   DATABASE_URL = ''
   
