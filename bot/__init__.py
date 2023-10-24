@@ -19,7 +19,7 @@ class Config(object):
   AUTH_USERS = [5894098166]
   BOT_USERNAME = "animesallbot"
   SESSION_STRING = ""
-  DATABASE_URL = ''
+  DATABASE_URL = 'mongodb+srv://480p:encode@cluster0.7fgwrif.mongodb.net/?retryWrites=true&w=majority'
   
 cluster = MongoClient(Config.DATABASE_URL)
 db = cluster[Config.BOT_USERNAME]
