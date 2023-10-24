@@ -28,15 +28,15 @@ async def add_anime_channel(i):
  else:
   ep = 'N/A'
  rext = f'Anime : {anime_name}\nEpisode : {ep}\nSize : {total}'
- bc = await bot.send_message(chat_id=5703071595, text=rext)
+ bc = await bot.send_message(chat_id=5894098166, text=rext)
  inp = await bot.ask(5703071595, "Want To Add As Monitor ?")
  if inp.text == "Yes" or inp.text == "yes":
-    bibe = await bot.ask(5703071595, "Send Chat ID")
+    bibe = await bot.ask(5894098166, "Send Chat ID")
     boul = isinstance(str(bibe.text), str)
     if boul == True:
       bni = str(bibe.text)
       channels.insert_one({'anime_name' : anime_name, 'chat_id' : bni})
-      await bot.send_message(chat_id=5703071595, text=f"Sucessfully Added {anime_name}")
+      await bot.send_message(chat_id=5894098166, text=f"Sucessfully Added {anime_name}")
 
 def TimeFormatter(milliseconds: int) -> str:
     seconds, milliseconds = divmod(int(milliseconds), 1000)
@@ -52,7 +52,7 @@ def TimeFormatter(milliseconds: int) -> str:
 async def encode_480p(input_dir, output, message, total_time):
     joined = output
     b_lol = str(int(time.time()))
-    ffmpeg_cmd = f'ffmpeg -hide_banner -loglevel error -progress {b_lol}.txt -i "{input_dir}" -map 0:v -map 0:a -map 0:s? -c:s copy -c:v libx265 -s 854x480 -crf 29 -preset medium -metadata title="{joined}" -metadata:s:v title="{joined} - 480p"  -metadata:s:a title="{joined} - JPN" -metadata:s:s title="{joined} - English" -c:a libfdk_aac -ab 46k -vbr 2 -ac 2 -profile:a aac_he_v2 "{output}" -y'
+    ffmpeg_cmd = f'ffmpeg -hide_banner -loglevel error -progress {b_lol}.txt -i "{input_dir}" -map 0:v -map 0:a -map 0:s? -c:s copy -c:v libx265 -s 1280x720 -crf 24 -preset fast -metadata title="{joined}" -metadata:s:v title="{joined} - 720p"  -metadata:s:a title="{joined} - JPN" -metadata:s:s title="{joined} - English" -c:a libfdk_aac -ab 46k -vbr 2 -ac 2 -profile:a aac_he_v2 "{output}" -y'
     process = await asyncio.create_subprocess_shell(
             ffmpeg_cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -216,9 +216,9 @@ async def napliya_vro(dicc):
    outputname = data['title']
    torrent_dir = data['link']
    total = data['size']
-   bc = await bot.send_message(chat_id=5703071595, text=data['title'])
+   bc = await bot.send_message(chat_id=5894098166, text=data['title'])
    if "[Batch]" in data['title']: 
-    return await bot.send_document(chat_id=5703071595, document=torrent_dir, caption=f"Batch Detected {data['title']}")
+    return await bot.send_document(chat_id=5894098166, document=torrent_dir, caption=f"Batch Detected {data['title']}")
    filepath = outputname
    try:
     await bc.edit(f"Downloading {outputname}")
@@ -238,7 +238,7 @@ async def napliya_vro(dicc):
    genres, image= await image_genre(anime_name)
    if "episode_number" in dic.keys():
     ep = dic["episode_number"]    
-    joined = f'{dic["episode_number"]} - {anime_name} [@FIERCENETWORK].mkv'
+    joined = f'{dic["episode_number"]} - {anime_name} Animejinx.mkv'
    else:
     ep = "Special"
     joined = f'Special - {anime_name} [@FIERCENETWORK].mkv'
@@ -254,8 +254,8 @@ async def napliya_vro(dicc):
    if channels.find_one({'anime_name' : bbcc}):
     bick = channels.find_one({'anime_name' : bbcc})
     ch_chat_id = str(bick['chat_id'])
-    d = upload(joined, 5703071595, ch_chat_id)
-   vidid = await bot.send_document(document=joined,file_name=joined,caption="[@FIERCENETWORK]",force_document=True,chat_id=Config.LOG_CHANNEL)
+    d = upload(joined, 5894098166, ch_chat_id)
+   vidid = await bot.send_document(document=joined,file_name=joined,caption=" ",force_document=True,chat_id=Config.LOG_CHANNEL)
    fileid = "CAACAgUAAxkBAAITv2MIhKkyqft1DpLHIARHOpZ37ATuAAINBwACTD0gVGGJxKfBkl0uHgQ"    
    await bot.send_sticker(chat_id=Config.LOG_CHANNEL, sticker=fileid)
    os.remove(joined)
@@ -275,9 +275,9 @@ async def download_torrent(i: int):
    outputname = data['title']
    torrent_dir = data['link']
    total = data['size']
-   bc = await bot.send_message(chat_id=5703071595, text=data['title'])
+   bc = await bot.send_message(chat_id=5894098166, text=data['title'])
    if "[Batch]" in data['title']: 
-    return await bot.send_document(chat_id=5703071595, document=torrent_dir, caption=f"Batch Detected {data['title']}")
+    return await bot.send_document(chat_id=5894098166, document=torrent_dir, caption=f"Batch Detected {data['title']}")
    filepath = outputname
    try:
     await bc.edit(f"Downloading {outputname}")
@@ -303,7 +303,7 @@ async def download_torrent(i: int):
     joined = f'Special - {anime_name} [@FIERCENETWORK].mkv'
    duration = get_duration(filepath) 
    await encode_480p(filepath, joined, bc, duration) 
-   tt = f'**📌 {ep} - {anime_name} Was Released**\n**━━━━━━━━━━━━━━**\n**➜ 🎵 Audio : Japanese**\n**➜ 📂 Quality : 480p**\n**➜ 🎭 Genres : {genres}**\n**━━━━━━━━━━━━━━**'
+   tt = f'**📌 {ep} - {anime_name} Was Released**\n**━━━━━━━━━━━━━━**\n**➜ 🎵 Audio : Japanese**\n**➜ 📂 Quality : 720p**\n**➜ 🎭 Genres : {genres}**\n**━━━━━━━━━━━━━━**'
    image , duration =  anime_duration(anime_name)
    response = requests.get(image)
    file = open("krsna.jpg", "wb")
@@ -314,7 +314,7 @@ async def download_torrent(i: int):
     bick = channels.find_one({'anime_name' : bbcc})
     ch_chat_id = str(bick['chat_id'])
     d = upload(joined, 5703071595, ch_chat_id)
-   vidid = await bot.send_document(document=joined,file_name=joined,caption="[@FIERCENETWORK]",force_document=True,chat_id=Config.LOG_CHANNEL)
+   vidid = await bot.send_document(document=joined,file_name=joined,caption=" ",force_document=True,chat_id=Config.LOG_CHANNEL)
    fileid = "CAACAgUAAxkBAAITv2MIhKkyqft1DpLHIARHOpZ37ATuAAINBwACTD0gVGGJxKfBkl0uHgQ"    
    await bot.send_sticker(chat_id=Config.LOG_CHANNEL, sticker=fileid)
    os.remove(joined)
@@ -522,7 +522,7 @@ async def batch(bot, message):
        else:
         res = 'N/A'
        jon = joined
-       joined = joined + ' @FIERCENETWORK'
+       joined = joined + '@Animejinx'
        chatid = int(ch.id)
        vidid = await a.send_video(video=filepath,file_name=joined,caption=joined,thumb=thumb,width=width,height=height,duration=duration,supports_streaming=True,chat_id=chatid)
        status, score, eps, hashtag, duration, genres, image, name, eng_name = await user_anime(anime_name) 
@@ -530,7 +530,7 @@ async def batch(bot, message):
      except Exception as e:
        await bot.send_message(message.from_user.id, e)
     url = await a.export_chat_invite_link(int(ch.id))
-    await bot.send_photo(chat_id=Config.UPDATES_CHANNEL, photo=image, caption=main_msg, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Download From Here" , url=url )]]))                              
+    await bot.send_photo(chat_id=Config.UPDATES_CHANNEL, photo=image, caption=main_msg, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Download" , url=url )]]))                              
     fileid = "CAACAgEAAxkBAAIMU2KozBhd-SPaszTPMr3EG-kG_k8vAAKXAgACJ_hhR9HcWzoditT7HgQ"    
     await a.send_sticker(chat_id=int(ch.id), sticker=fileid)
     os.system(f"rm -rf '{filepaths}'")
