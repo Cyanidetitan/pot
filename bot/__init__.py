@@ -9,7 +9,7 @@ from logging.handlers import RotatingFileHandler
 from pyrogram import Client
 
 class Config(object):
-  BOT_TOKEN = str("")
+  BOT_TOKEN = str("6047442812:AAFcQAOonV8XTL44O78J_WVYiXzv7aaHx20")
   API_ID = 8858279
   API_HASH = str("ef28c3f458143cbcb4271a98a2e9d596")
   DOWNLOAD_LOCATION = str("bot/downloads/")
