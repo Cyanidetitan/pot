@@ -39,7 +39,7 @@ async def torrent_task():
         else:
             current_title = new_title
             update_latest_anime(current_title)
-            await bot.send_message(chat_id=5703071595, text="Changes Detected Downloading Torrent")
+            await bot.send_message(chat_id=5894098166, text="Changes Detected Downloading Torrent")
             LOGS.info("Changes Detected")
             asyncio.create_task(download_torrent(0))
             await asyncio.sleep(15)
